@@ -129,7 +129,7 @@ importers:
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       siwe: 1.1.6_ethers@5.6.5
-      wagmi: link:../packages/react
+      wagmi: 0.5.11_yyarstpzwf4qtidwcbhsprlobu
     devDependencies:
       '@next/bundle-analyzer': 12.1.6
       '@preconstruct/next': 4.0.0
@@ -162,7 +162,7 @@ importers:
       next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
-      wagmi: link:../../packages/react
+      wagmi: 0.5.11_yyarstpzwf4qtidwcbhsprlobu
     devDependencies:
       '@preconstruct/next': 4.0.0
       '@types/node': 17.0.31
@@ -201,7 +201,7 @@ importers:
       react-scripts: 5.0.1_oxzyc36t6ywqirvp35nas5bcte
       typescript: 4.6.4
       util: 0.12.4
-      wagmi: link:../../packages/react
+      wagmi: 0.5.11_yyarstpzwf4qtidwcbhsprlobu
       web-vitals: 2.1.4
 
   examples/next:
@@ -222,7 +222,7 @@ importers:
       next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
-      wagmi: link:../../packages/react
+      wagmi: 0.5.11_yyarstpzwf4qtidwcbhsprlobu
     devDependencies:
       '@types/node': 17.0.31
       '@types/react': 18.0.9
@@ -261,7 +261,7 @@ importers:
       react-dom: 18.1.0_react@18.1.0
       remix: 1.6.3
       safe-event-emitter: 1.0.1
-      wagmi: link:../../packages/react
+      wagmi: 0.5.11_yyarstpzwf4qtidwcbhsprlobu
     devDependencies:
       '@remix-run/dev': 1.6.3_qjnn6vzvj4tebce62z3xdnrjfq
       '@types/react': 18.0.9
@@ -291,7 +291,7 @@ importers:
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
       util: 0.12.4
-      wagmi: link:../../packages/react
+      wagmi: 0.5.11_yyarstpzwf4qtidwcbhsprlobu
     devDependencies:
       '@types/react': 18.0.9
       '@types/react-dom': 18.0.3
@@ -317,6 +317,8 @@ importers:
   packages/react:
     specifiers:
       '@coinbase/wallet-sdk': ^3.3.0
+      '@tanstack/query-sync-storage-persister': ^4.0.10
+      '@tanstack/react-query-persist-client': ^4.0.10
       '@testing-library/react': ^13.2.0
       '@testing-library/react-hooks': ^7.0.2
       '@types/react': ^18.0.9
@@ -329,13 +331,15 @@ importers:
       react-17: npm:react@^17.0.2
       react-dom: ^18.1.0
       react-dom-17: npm:react-dom@^17.0.2
-      react-query: ^4.0.0-beta.23
+      react-query: npm:@tanstack/react-query@4.0.10
       use-sync-external-store: ^1.1.0
     dependencies:
       '@coinbase/wallet-sdk': 3.3.0
-      '@wagmi/core': link:../core
+      '@tanstack/query-sync-storage-persister': 4.0.10
+      '@tanstack/react-query-persist-client': 4.0.10
+      '@wagmi/core': 0.4.9_dlia23aw73v3ibr4gp6mz2l3xe
       '@walletconnect/ethereum-provider': 1.7.8
-      react-query: 4.0.0-beta.23_ef5jwxihqo6n7gxfmzogljlgcm
+      react-query: /@tanstack/react-query/4.0.10_ef5jwxihqo6n7gxfmzogljlgcm
       use-sync-external-store: 1.1.0_react@18.1.0
     devDependencies:
       '@testing-library/react': 13.2.0_ef5jwxihqo6n7gxfmzogljlgcm
@@ -6981,6 +6985,37 @@ packages:
       defer-to-connect: 2.0.1
     dev: true
 
+  /@tanstack/query-core/4.0.10:
+    resolution: {integrity: sha512-9LsABpZXkWZHi4P1ozRETEDXQocLAxVzQaIhganxbNuz/uA3PsCAJxJTiQrknG5htLMzOF5MqM9G10e6DCxV1A==}
+    dev: false
+
+  /@tanstack/query-sync-storage-persister/4.0.10:
+    resolution: {integrity: sha512-A8Lf8w8H2/FWTPGzNi5kb6KPI/OBFPs9+fzGZ6gvetSyl6U7aCq4qztn/PIqlp48xew/JFZjN2CtO8RivTwBnA==}
+    dev: false
+
+  /@tanstack/react-query-persist-client/4.0.10:
+    resolution: {integrity: sha512-R2xftsji8VteC28LWitQYhuXvUDPoFAOuDl8wP1ngg4aLIYtKCQ78MS/9jRJSuykok+TpNUCvthBb37ShNVLKQ==}
+    dev: false
+
+  /@tanstack/react-query/4.0.10_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-Wn5QhZUE5wvr6rGClV7KeQIUsdTmYR9mgmMZen7DSRWauHW2UTynFg3Kkf6pw+XlxxOLsyLWwz/Q6q1lSpM3TQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@tanstack/query-core': 4.0.10
+      '@types/use-sync-external-store': 0.0.3
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
+      use-sync-external-store: 1.2.0_react@18.1.0
+    dev: false
+
   /@testing-library/dom/8.11.3:
     resolution: {integrity: sha512-9LId28I+lx70wUiZjLvi1DB/WT2zGOxUh46glrSNMaWVx849kKAluezVzZrXJfTKKoQTmEOutLes/bHg4Bj3aA==}
     engines: {node: '>=12'}
@@ -7999,6 +8034,28 @@ packages:
       - supports-color
     dev: true
 
+  /@wagmi/core/0.4.9_dlia23aw73v3ibr4gp6mz2l3xe:
+    resolution: {integrity: sha512-V/1PgetbA0PcIT6FJxDnCwRU/MZhecHVu1/7+QMncdxUQykyDd8MGlx0b8EjitMLLqzuD9kcx7sQpfS0gk5rZg==}
+    peerDependencies:
+      '@coinbase/wallet-sdk': '>=3.3.0'
+      '@walletconnect/ethereum-provider': '>=1.7.5'
+      ethers: '>=5.5.1'
+    peerDependenciesMeta:
+      '@coinbase/wallet-sdk':
+        optional: true
+      '@walletconnect/ethereum-provider':
+        optional: true
+    dependencies:
+      '@coinbase/wallet-sdk': 3.3.0
+      '@walletconnect/ethereum-provider': 1.7.8
+      ethers: 5.6.5
+      eventemitter3: 4.0.7
+      zustand: 4.0.0-rc.1_react@18.1.0
+    transitivePeerDependencies:
+      - immer
+      - react
+    dev: false
+
   /@walletconnect/browser-utils/1.7.8:
     resolution: {integrity: sha512-iCL0XCWOZaABIc0lqA79Vyaybr3z26nt8mxiwvfrG8oaKUf5Y21Of4dj+wIXQ4Hhblre6SgDlU0Ffb39+1THOw==}
     dependencies:
@@ -8784,7 +8841,7 @@ packages:
   /axios/0.21.4:
     resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
     dependencies:
-      follow-redirects: 1.14.9_debug@4.3.2
+      follow-redirects: 1.14.9
     transitivePeerDependencies:
       - debug
 
@@ -8799,7 +8856,7 @@ packages:
   /axios/0.24.0:
     resolution: {integrity: sha512-Q6cWsys88HoPgAaFAVUb0WpPk0O8iTeisR9IMqy9G8AbO4NlpVknrnQS03zzF9PGAWgO3cgletO3VjV/P7VztA==}
     dependencies:
-      follow-redirects: 1.14.9_debug@4.3.2
+      follow-redirects: 1.14.9_debug@4.3.4
     transitivePeerDependencies:
       - debug
     dev: true
@@ -10507,6 +10564,7 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+    dev: true
 
   /debug/4.3.3_supports-color@8.1.1:
     resolution: {integrity: sha512-/zxw5+vh1Tfv+4Qn7a5nsbcJKPaSvCDhojn6FEl9vupwK2VCSDtEiEtqr8DFtzYFOdz63LBkxec7DYuc2jon6Q==}
@@ -12998,6 +13056,15 @@ packages:
     resolution: {integrity: sha512-Rwix9pBtC1Nuy5wysTmKy+UjbDJpIfg8eHjw0rjZ1mX4GNLz1Bmd16uDpI3Gk1i70Fgcs8Csg2lPm8HULFg9DQ==}
     dev: false
 
+  /follow-redirects/1.14.9:
+    resolution: {integrity: sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+
   /follow-redirects/1.14.9_debug@4.3.2:
     resolution: {integrity: sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==}
     engines: {node: '>=4.0'}
@@ -13008,6 +13075,18 @@ packages:
         optional: true
     dependencies:
       debug: 4.3.2
+    dev: true
+
+  /follow-redirects/1.14.9_debug@4.3.4:
+    resolution: {integrity: sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dependencies:
+      debug: 4.3.4
 
   /for-in/1.0.2:
     resolution: {integrity: sha512-7EwmXrOjyL+ChxMhmG5lnW9MPt1aIeZEwKhQzoBUdTV0N3zuwWDZYVJatDvZ2OyzPUvdIAZDsCetk3coyMfcnQ==}
@@ -13790,7 +13869,7 @@ packages:
     engines: {node: '>=8.0.0'}
     dependencies:
       eventemitter3: 4.0.7
-      follow-redirects: 1.14.9_debug@4.3.2
+      follow-redirects: 1.14.9_debug@4.3.4
       requires-port: 1.0.0
     transitivePeerDependencies:
       - debug
@@ -19159,7 +19238,7 @@ packages:
       match-sorter: 6.3.1
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
-      use-sync-external-store: 1.1.0_react@18.1.0
+      use-sync-external-store: 1.2.0_react@18.1.0
     dev: false
 
   /react-refresh/0.11.0:
@@ -20282,7 +20361,7 @@ packages:
     dependencies:
       command-exists: 1.2.9
       commander: 3.0.2
-      follow-redirects: 1.14.9_debug@4.3.2
+      follow-redirects: 1.14.9_debug@4.3.4
       fs-extra: 0.30.0
       js-sha3: 0.8.0
       memorystream: 0.3.1
@@ -21603,6 +21682,14 @@ packages:
       react: 18.1.0
     dev: false
 
+  /use-sync-external-store/1.2.0_react@18.1.0:
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.1.0
+    dev: false
+
   /use/3.1.1:
     resolution: {integrity: sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==}
     engines: {node: '>=0.10.0'}
@@ -21772,6 +21859,31 @@ packages:
     dependencies:
       xml-name-validator: 4.0.0
     dev: true
+
+  /wagmi/0.5.11_yyarstpzwf4qtidwcbhsprlobu:
+    resolution: {integrity: sha512-7ayOgMuaMQasvU7IbJfdmFS0YnxbtBOlnJj9Xqlz0h6MAYJ+3iSDmJeIZaPb5OKDPrvhTzawSlFt8rYSYoSKbQ==}
+    peerDependencies:
+      ethers: '>=5.5.1'
+      react: '>=17.0.0'
+    dependencies:
+      '@coinbase/wallet-sdk': 3.3.0
+      '@wagmi/core': 0.4.9_dlia23aw73v3ibr4gp6mz2l3xe
+      '@walletconnect/ethereum-provider': 1.7.8
+      ethers: 5.6.5
+      react: 18.1.0
+      react-query: 4.0.0-beta.23_ef5jwxihqo6n7gxfmzogljlgcm
+      use-sync-external-store: 1.2.0_react@18.1.0
+    transitivePeerDependencies:
+      - '@babel/core'
+      - bufferutil
+      - debug
+      - encoding
+      - immer
+      - react-dom
+      - react-native
+      - supports-color
+      - utf-8-validate
+    dev: false
 
   /wait-on/6.0.0_debug@4.3.2:
     resolution: {integrity: sha512-tnUJr9p5r+bEYXPUdRseolmz5XqJTTj98JgOsfBn7Oz2dxfE2g3zw1jE+Mo8lopM3j3et/Mq1yW7kKX6qw7RVw==}
@@ -22597,6 +22709,22 @@ packages:
         optional: true
     dependencies:
       use-sync-external-store: 1.1.0
+    dev: false
+
+  /zustand/4.0.0-rc.1_react@18.1.0:
+    resolution: {integrity: sha512-qgcs7zLqBdHu0PuT3GW4WCIY5SgXdsv30GQMu9Qpp1BA2aS+sNS8l4x0hWuyEhjXkN+701aGWawhKDv6oWJAcw==}
+    engines: {node: '>=12.7.0'}
+    peerDependencies:
+      immer: '>=9.0'
+      react: '>=16.8'
+    peerDependenciesMeta:
+      immer:
+        optional: true
+      react:
+        optional: true
+    dependencies:
+      react: 18.1.0
+      use-sync-external-store: 1.1.0_react@18.1.0
     dev: false
 
   /zwitch/2.0.2:

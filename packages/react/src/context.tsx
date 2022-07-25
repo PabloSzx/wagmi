@@ -7,8 +7,11 @@ import {
   createClient as createVanillaClient,
 } from '@wagmi/core'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { Persister, persistQueryClient } from 'react-query/persistQueryClient'
-import { createWebStoragePersister } from 'react-query/createWebStoragePersister'
+import {
+  Persister,
+  persistQueryClient,
+} from '@tanstack/react-query-persist-client'
+import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister'
 
 import { deserialize, serialize } from './utils'
 
@@ -37,7 +40,7 @@ export function createClient<
     },
   }),
   persister = typeof window !== 'undefined'
-    ? createWebStoragePersister({
+    ? createSyncStoragePersister({
         key: 'wagmi.cache',
         storage: window.localStorage,
         serialize,
