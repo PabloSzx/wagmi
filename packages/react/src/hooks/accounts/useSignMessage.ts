@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { SignMessageArgs, SignMessageResult, signMessage } from '@wagmi/core'
-import { useMutation } from 'react-query'
+import { useMutation } from '@tanstack/react-query'
 
 import { MutationConfig } from '../../types'
 

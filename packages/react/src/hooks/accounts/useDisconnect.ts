@@ -1,5 +1,5 @@
 import { disconnect } from '@wagmi/core'
-import { useMutation } from 'react-query'
+import { useMutation } from '@tanstack/react-query'
 
 export type UseDisconnectConfig = {
   /** Function to invoke when an error is thrown while connecting. */

@@ -6,7 +6,7 @@ import {
   WebSocketProvider,
   createClient as createVanillaClient,
 } from '@wagmi/core'
-import { QueryClient, QueryClientProvider } from 'react-query'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import {
   Persister,
   persistQueryClient,

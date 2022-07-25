@@ -7,7 +7,7 @@ import {
   useIsRestoring,
   useQueryClient,
   useQueryErrorResetBoundary,
-} from 'react-query'
+} from '@tanstack/react-query'
 
 import { useSyncExternalStore } from '../useSyncExternalStore'
 import { shouldThrowError } from './utils'

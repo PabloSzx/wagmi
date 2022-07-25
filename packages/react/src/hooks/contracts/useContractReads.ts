@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { hashQueryKey } from 'react-query'
+import { hashQueryKey } from '@tanstack/react-query'
 import {
   ReadContractsConfig,
   ReadContractsResult,

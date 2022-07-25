@@ -6,7 +6,7 @@ import {
   parseContractResult,
   readContract,
 } from '@wagmi/core'
-import { hashQueryKey } from 'react-query'
+import { hashQueryKey } from '@tanstack/react-query'
 
 import { QueryConfig, QueryFunctionArgs } from '../../types'
 import { useBlockNumber } from '../network-status'

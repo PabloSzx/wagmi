@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { ConnectArgs, ConnectResult, connect } from '@wagmi/core'
-import { useMutation } from 'react-query'
+import { useMutation } from '@tanstack/react-query'
 
 import { useClient } from '../../context'
 import { MutationConfig } from '../../types'

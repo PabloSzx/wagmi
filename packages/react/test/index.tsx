@@ -5,7 +5,7 @@ import {
   waitFor,
 } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
-import { QueryClient } from 'react-query'
+import { QueryClient } from '@tanstack/react-query'
 
 import { WagmiConfig } from '../src'
 import { setupClient } from './utils'

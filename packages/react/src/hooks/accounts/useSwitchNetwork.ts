@@ -4,7 +4,7 @@ import {
   SwitchNetworkResult,
   switchNetwork,
 } from '@wagmi/core'
-import { useMutation } from 'react-query'
+import { useMutation } from '@tanstack/react-query'
 
 import { useClient } from '../../context'
 import { MutationConfig } from '../../types'
