@@ -2,11 +2,15 @@
   "name": "wagmi",
   "description": "React Hooks for Ethereum",
   "license": "WAGMIT",
-  "version": "0.5.9",
-  "repository": "tmm/wagmi",
+  "version": "0.6.4",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wagmi-dev/wagmi.git",
+    "directory": "packages/react"
+  },
   "author": "awkweb.eth",
   "homepage": "https://wagmi.sh",
-  "ethereum": "awkweb.eth",
+  "ethereum": "wagmi-dev.eth",
   "funding": [
     {
       "type": "gitcoin",
@@ -14,10 +18,9 @@
     },
     {
       "type": "github",
-      "url": "https://github.com/sponsors/tmm"
+      "url": "https://github.com/sponsors/wagmi-dev"
     }
   ],
-  "sideEffects": false,
   "main": "dist/wagmi.cjs.js",
   "module": "dist/wagmi.esm.js",
   "types": "dist/wagmi.cjs.d.ts",
@@ -47,6 +50,10 @@
       "module": "./connectors/metaMask/dist/wagmi-connectors-metaMask.esm.js",
       "default": "./connectors/metaMask/dist/wagmi-connectors-metaMask.cjs.js"
     },
+    "./connectors/mock": {
+      "module": "./connectors/mock/dist/wagmi-connectors-mock.esm.js",
+      "default": "./connectors/mock/dist/wagmi-connectors-mock.cjs.js"
+    },
     "./connectors/walletConnect": {
       "module": "./connectors/walletConnect/dist/wagmi-connectors-walletConnect.esm.js",
       "default": "./connectors/walletConnect/dist/wagmi-connectors-walletConnect.cjs.js"
@@ -68,6 +75,7 @@
       "default": "./providers/public/dist/wagmi-providers-public.cjs.js"
     }
   },
+  "sideEffects": false,
   "files": ["/actions", "/chains", "/connectors", "/dist", "/providers"],
   "preconstruct": {
     "entrypoints": [
@@ -77,6 +85,7 @@
       "connectors/coinbaseWallet.ts",
       "connectors/injected.ts",
       "connectors/metaMask.ts",
+      "connectors/mock.ts",
       "connectors/walletConnect.ts",
       "providers/alchemy.ts",
       "providers/public.ts",
@@ -90,24 +99,24 @@
   },
   "dependencies": {
     "@coinbase/wallet-sdk": "^3.3.0",
+    "@tanstack/react-query": "^4.0.10",
+    "@tanstack/react-query-persist-client": "^4.0.10",
     "@tanstack/query-sync-storage-persister": "4.0.10",
-    "@tanstack/react-query-persist-client": "4.0.10",
-    "@wagmi/core": "^0.4.7",
+    "@wagmi/core": "^0.5.4",
     "@walletconnect/ethereum-provider": "^1.7.8",
-    "@tanstack/react-query": "4.0.10",
-    "use-sync-external-store": "^1.1.0"
+    "use-sync-external-store": "^1.2.0"
   },
   "devDependencies": {
-    "@testing-library/react": "^13.2.0",
-    "@testing-library/react-hooks": "^7.0.2",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/react-hooks": "^8.0.1",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.3",
     "@types/use-sync-external-store": "^0.0.3",
     "ethers": "^5.6.5",
     "react": "^18.1.0",
-    "react-17": "npm:react@^17.0.2",
+    "react-17": "npm:react@17.0.2",
     "react-dom": "^18.1.0",
-    "react-dom-17": "npm:react-dom@^17.0.2"
+    "react-dom-17": "npm:react-dom@17.0.2"
   },
   "keywords": ["react", "hooks", "eth", "ethereum", "dapps", "wallet", "web3"]
 }
