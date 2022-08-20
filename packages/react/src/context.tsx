@@ -1,5 +1,9 @@
+import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import * as React from 'react'
+import {
+  Persister,
+  persistQueryClient,
+} from '@tanstack/react-query-persist-client'
 import {
   ClientConfig,
   Provider,
@@ -7,11 +11,7 @@ import {
   WebSocketProvider,
   createClient as createVanillaClient,
 } from '@wagmi/core'
-import {
-  Persister,
-  persistQueryClient,
-} from '@tanstack/react-query-persist-client'
-import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister'
+import * as React from 'react'
 
 import { deserialize, serialize } from './utils'
 
