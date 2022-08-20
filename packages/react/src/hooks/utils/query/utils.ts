@@ -41,7 +41,7 @@ export function shouldThrowError<T extends (...args: any[]) => boolean>(
 }
 
 export function trackResult<
-  TQueryResult = unknown,
+  TQueryResult extends Record<string, unknown> = Record<string, unknown>,
   TQueryFnData = unknown,
   TError = unknown,
   TData = TQueryFnData,

@@ -1,9 +1,13 @@
+import { expect, it } from 'vitest'
+
 import * as Exports from './'
 
 it('should expose correct exports', () => {
   expect(Object.keys(Exports)).toMatchInlineSnapshot(`
     [
       "connect",
+      "deprecatedSendTransaction",
+      "deprecatedWriteContract",
       "disconnect",
       "fetchBalance",
       "fetchBlockNumber",
@@ -14,11 +18,14 @@ it('should expose correct exports', () => {
       "fetchFeeData",
       "fetchSigner",
       "fetchToken",
+      "fetchTransaction",
       "getAccount",
       "getContract",
       "getNetwork",
       "getProvider",
       "getWebSocketProvider",
+      "prepareWriteContract",
+      "prepareSendTransaction",
       "readContract",
       "readContracts",
       "sendTransaction",
@@ -58,6 +65,7 @@ it('should expose correct exports', () => {
       "ChainNotConfiguredError",
       "ConnectorAlreadyConnectedError",
       "ConnectorNotFoundError",
+      "ContractMethodDoesNotExistError",
       "ContractMethodNoResultError",
       "ProviderChainsNotFound",
       "ProviderRpcError",

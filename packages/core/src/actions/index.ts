@@ -30,14 +30,23 @@ export {
 } from './accounts'
 
 export {
+  deprecatedWriteContract,
+  fetchToken,
   getContract,
+  prepareWriteContract,
   readContract,
   readContracts,
   watchContractEvent,
   watchReadContract,
   watchReadContracts,
   writeContract,
+  type DeprecatedWriteContractConfig,
+  type DeprecatedWriteContractResult,
+  type FetchTokenArgs,
+  type FetchTokenResult,
   type GetContractArgs,
+  type PrepareWriteContractConfig,
+  type PrepareWriteContractResult,
   type ReadContractConfig,
   type ReadContractResult,
   type ReadContractsConfig,
@@ -46,8 +55,10 @@ export {
   type WatchReadContractResult,
   type WatchReadContractsConfig,
   type WatchReadContractsResult,
-  type WriteContractConfig,
+  type WriteContractArgs,
+  type WriteContractPreparedArgs,
   type WriteContractResult,
+  type WriteContractUnpreparedArgs,
 } from './contracts'
 
 export {
@@ -91,16 +102,21 @@ export {
 } from './providers'
 
 export {
-  fetchToken,
-  type FetchTokenArgs,
-  type FetchTokenResult,
-} from './tokens'
-
-export {
+  deprecatedSendTransaction,
+  fetchTransaction,
+  prepareSendTransaction,
   sendTransaction,
   waitForTransaction,
+  type DeprecatedSendTransactionArgs,
+  type DeprecatedSendTransactionResult,
+  type FetchTransactionArgs,
+  type FetchTransactionResult,
+  type PrepareSendTransactionArgs,
+  type PrepareSendTransactionResult,
   type SendTransactionArgs,
+  type SendTransactionPreparedRequest,
   type SendTransactionResult,
+  type SendTransactionUnpreparedRequest,
   type WaitForTransactionArgs,
   type WaitForTransactionResult,
 } from './transactions'

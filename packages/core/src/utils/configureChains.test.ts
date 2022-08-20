@@ -1,18 +1,25 @@
 import { providers } from 'ethers'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
+import {
+  Mock,
+  afterAll,
+  afterEach,
+  beforeAll,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest'
 
+import { chain, defaultAlchemyApiKey, defaultInfuraApiKey } from '../constants'
 import { alchemyProvider } from '../providers/alchemy'
-import { publicProvider } from '../providers/public'
 import { infuraProvider } from '../providers/infura'
 import { jsonRpcProvider } from '../providers/jsonRpc'
 
-import { chain, defaultAlchemyId, defaultInfuraId } from '../constants'
+import { publicProvider } from '../providers/public'
 import { Chain } from '../types'
 import { configureChains } from './configureChains'
-
-const alchemyId = defaultAlchemyId
-const infuraId = defaultInfuraId
 
 const avalancheChain: Chain = {
   blockExplorers: {
@@ -52,7 +59,7 @@ function getHandlers({
   rpcUrl,
 }: {
   chains: Chain[]
-  listener: jest.Mock
+  listener: Mock
   rpcUrl: (chain: Chain) => string
 }) {
   const handlers = chains.map((chain) => {
@@ -68,28 +75,28 @@ function getHandlers({
   return handlers
 }
 
-const alchemyListener = jest.fn()
+const alchemyListener = vi.fn()
 const alchemyHandlers = getHandlers({
   chains: defaultChainsWithAvalanche,
   listener: alchemyListener,
-  rpcUrl: (chain) => `${chain.rpcUrls.alchemy}/${alchemyId}`,
+  rpcUrl: (chain) => `${chain.rpcUrls.alchemy}/${defaultAlchemyApiKey}`,
 })
 
-const infuraListener = jest.fn()
+const infuraListener = vi.fn()
 const infuraHandlers = getHandlers({
   chains: defaultChainsWithAvalanche,
   listener: infuraListener,
-  rpcUrl: (chain) => `${chain.rpcUrls.infura}/${infuraId}`,
+  rpcUrl: (chain) => `${chain.rpcUrls.infura}/${defaultInfuraApiKey}`,
 })
 
-const publicListener = jest.fn()
+const publicListener = vi.fn()
 const publicHandlers = getHandlers({
   chains: defaultChainsWithAvalanche,
   listener: publicListener,
   rpcUrl: (chain) => chain.rpcUrls.default,
 })
 
-const jsonRpcListener = jest.fn()
+const jsonRpcListener = vi.fn()
 const jsonRpcHandlers = getHandlers({
   chains: defaultChainsWithAvalanche,
   listener: jsonRpcListener,
@@ -122,7 +129,7 @@ describe('configureChains', () => {
   describe('single provider', () => {
     describe('alchemy', () => {
       const { chains, provider } = configureChains(defaultChains, [
-        alchemyProvider({ alchemyId }),
+        alchemyProvider({ apiKey: defaultAlchemyApiKey }),
       ])
 
       it('populate chains with Alchemy RPC URLs if all chains support Alchemy', async () => {
@@ -156,7 +163,7 @@ describe('configureChains', () => {
           configureChains(
             defaultChainsWithAvalanche,
 
-            [alchemyProvider({ alchemyId })],
+            [alchemyProvider({ apiKey: defaultAlchemyApiKey })],
           ),
         ).toThrowErrorMatchingInlineSnapshot(`
           "Could not find valid provider configuration for chain \\"Avalanche\\".
@@ -169,7 +176,7 @@ describe('configureChains', () => {
 
     describe('infura', () => {
       const { chains, provider } = configureChains(defaultChains, [
-        infuraProvider({ infuraId }),
+        infuraProvider({ apiKey: defaultInfuraApiKey }),
       ])
 
       it('configures with Infura RPC URL if all chains support Infura', async () => {
@@ -203,7 +210,7 @@ describe('configureChains', () => {
           configureChains(
             defaultChainsWithAvalanche,
 
-            [infuraProvider({ infuraId })],
+            [infuraProvider({ apiKey: defaultInfuraApiKey })],
           ),
         ).toThrowErrorMatchingInlineSnapshot(`
           "Could not find valid provider configuration for chain \\"Avalanche\\".
@@ -366,8 +373,8 @@ describe('configureChains', () => {
     ]
 
     const { chains, provider } = configureChains(defaultChains, [
-      alchemyProvider({ alchemyId }),
-      infuraProvider({ infuraId }),
+      alchemyProvider({ apiKey: defaultAlchemyApiKey }),
+      infuraProvider({ apiKey: defaultInfuraApiKey }),
       jsonRpcProvider({
         rpc: (chain) => {
           if (chain.id !== avalancheChain.id) return null
@@ -411,8 +418,8 @@ describe('configureChains', () => {
           defaultChainsWithAvalanche,
 
           [
-            alchemyProvider({ alchemyId }),
-            infuraProvider({ infuraId }),
+            alchemyProvider({ apiKey: defaultAlchemyApiKey }),
+            infuraProvider({ apiKey: defaultInfuraApiKey }),
             jsonRpcProvider({
               rpc: (chain) => ({
                 http:
@@ -437,8 +444,8 @@ describe('configureChains', () => {
           const { provider } = configureChains(
             defaultChains,
             [
-              alchemyProvider({ alchemyId }),
-              infuraProvider({ infuraId }),
+              alchemyProvider({ apiKey: defaultAlchemyApiKey }),
+              infuraProvider({ apiKey: defaultInfuraApiKey }),
               jsonRpcProvider({
                 rpc: (chain) => ({
                   http: `https://${chain.network}.example.com`,
@@ -458,8 +465,8 @@ describe('configureChains', () => {
           const { provider } = configureChains(
             defaultChains,
             [
-              alchemyProvider({ alchemyId }),
-              infuraProvider({ infuraId }),
+              alchemyProvider({ apiKey: defaultAlchemyApiKey }),
+              infuraProvider({ apiKey: defaultInfuraApiKey }),
               jsonRpcProvider({
                 rpc: (chain) => ({
                   http: `https://${chain.network}.example.com`,
@@ -479,8 +486,8 @@ describe('configureChains', () => {
           const { provider } = configureChains(
             defaultChains,
             [
-              alchemyProvider({ alchemyId }),
-              infuraProvider({ infuraId }),
+              alchemyProvider({ apiKey: defaultAlchemyApiKey }),
+              infuraProvider({ apiKey: defaultInfuraApiKey }),
               jsonRpcProvider({
                 rpc: (chain) => ({
                   http: `https://${chain.network}.example.com`,
@@ -501,8 +508,8 @@ describe('configureChains', () => {
         const { provider } = configureChains(
           defaultChains,
           [
-            alchemyProvider({ alchemyId }),
-            infuraProvider({ infuraId }),
+            alchemyProvider({ apiKey: defaultAlchemyApiKey }),
+            infuraProvider({ apiKey: defaultInfuraApiKey }),
             jsonRpcProvider({
               rpc: (chain) => ({
                 http: `https://${chain.network}.example.com`,
@@ -524,8 +531,8 @@ describe('configureChains', () => {
         configureChains(
           defaultChains,
           [
-            alchemyProvider({ alchemyId }),
-            infuraProvider({ infuraId }),
+            alchemyProvider({ apiKey: defaultAlchemyApiKey }),
+            infuraProvider({ apiKey: defaultInfuraApiKey }),
             jsonRpcProvider({
               rpc: (chain) => ({
                 http: `https://${chain.network}.example.com`,
@@ -544,8 +551,8 @@ describe('configureChains', () => {
       const { provider } = configureChains(
         defaultChains,
         [
-          alchemyProvider({ alchemyId }),
-          infuraProvider({ infuraId }),
+          alchemyProvider({ apiKey: defaultAlchemyApiKey }),
+          infuraProvider({ apiKey: defaultInfuraApiKey }),
           jsonRpcProvider({
             rpc: (chain) => ({
               http: `https://${chain.network}.example.com`,
@@ -568,10 +575,10 @@ describe('configureChains', () => {
         defaultChains,
         [
           alchemyProvider({
-            alchemyId,
+            apiKey: defaultAlchemyApiKey,
           }),
           infuraProvider({
-            infuraId,
+            apiKey: defaultInfuraApiKey,
           }),
           jsonRpcProvider({
             rpc: (chain) => ({
@@ -582,14 +589,18 @@ describe('configureChains', () => {
         { stallTimeout: 5000 },
       )
 
+      const fallbackProvider = provider({
+        chainId: chain.mainnet.id,
+      }) as providers.FallbackProvider
+
       expect(
-        (
-          provider({ chainId: chain.mainnet.id }) as providers.FallbackProvider
-        ).providerConfigs.map(({ priority, stallTimeout, weight }) => ({
-          priority,
-          stallTimeout,
-          weight,
-        })),
+        fallbackProvider.providerConfigs.map(
+          ({ priority, stallTimeout, weight }) => ({
+            priority,
+            stallTimeout,
+            weight,
+          }),
+        ),
       ).toMatchInlineSnapshot(`
         [
           {
@@ -614,13 +625,13 @@ describe('configureChains', () => {
     it('assigns fallback config passed to providers', () => {
       const { provider } = configureChains(defaultChains, [
         alchemyProvider({
-          alchemyId,
+          apiKey: defaultAlchemyApiKey,
           priority: 1,
           stallTimeout: 2000,
           weight: 1,
         }),
         infuraProvider({
-          infuraId,
+          apiKey: defaultInfuraApiKey,
           priority: 2,
           stallTimeout: 3000,
           weight: 2,
@@ -635,14 +646,18 @@ describe('configureChains', () => {
         }),
       ])
 
+      const fallbackProvider = provider({
+        chainId: chain.mainnet.id,
+      }) as providers.FallbackProvider
+
       expect(
-        (
-          provider({ chainId: chain.mainnet.id }) as providers.FallbackProvider
-        ).providerConfigs.map(({ priority, stallTimeout, weight }) => ({
-          priority,
-          stallTimeout,
-          weight,
-        })),
+        fallbackProvider.providerConfigs.map(
+          ({ priority, stallTimeout, weight }) => ({
+            priority,
+            stallTimeout,
+            weight,
+          }),
+        ),
       ).toMatchInlineSnapshot(`
         [
           {

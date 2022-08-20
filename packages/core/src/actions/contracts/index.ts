@@ -1,3 +1,21 @@
+export {
+  deprecatedWriteContract,
+  type DeprecatedWriteContractConfig,
+  type DeprecatedWriteContractResult,
+} from './deprecatedWriteContract'
+
+export {
+  fetchToken,
+  type FetchTokenArgs,
+  type FetchTokenResult,
+} from './fetchToken'
+
+export {
+  prepareWriteContract,
+  type PrepareWriteContractConfig,
+  type PrepareWriteContractResult,
+} from './prepareWriteContract'
+
 export { getContract, type GetContractArgs } from './getContract'
 
 export {
@@ -28,6 +46,8 @@ export {
 
 export {
   writeContract,
-  type WriteContractConfig,
+  type WriteContractArgs,
+  type WriteContractPreparedArgs,
   type WriteContractResult,
+  type WriteContractUnpreparedArgs,
 } from './writeContract'

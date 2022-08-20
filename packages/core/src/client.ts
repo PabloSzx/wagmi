@@ -1,5 +1,5 @@
-import { Mutate, StoreApi, default as create } from 'zustand/vanilla'
 import { persist, subscribeWithSelector } from 'zustand/middleware'
+import { Mutate, StoreApi, default as create } from 'zustand/vanilla'
 
 import { Connector, ConnectorData, InjectedConnector } from './connectors'
 import { ClientStorage, createStorage, noopStorage } from './storage'
@@ -31,7 +31,7 @@ export type ClientConfig<
 
 export type Data<TProvider extends Provider> = ConnectorData<TProvider>
 export type State<
-  TProvider extends Provider,
+  TProvider extends Provider = Provider,
   TWebSocketProvider extends WebSocketProvider = WebSocketProvider,
 > = {
   chains?: Connector['chains']
@@ -74,7 +74,7 @@ export class Client<
     webSocketProvider,
   }: ClientConfig<TProvider, TWebSocketProvider>) {
     // Check status for autoConnect flag
-    let status: State<TProvider, TWebSocketProvider>['status'] = 'disconnected'
+    let status: State['status'] = 'disconnected'
     let chainId: number | undefined
     if (autoConnect) {
       try {
@@ -89,23 +89,29 @@ export class Client<
     }
 
     // Create store
-    this.store = create(
+    this.store = create<
+      State<TProvider, TWebSocketProvider>,
+      [
+        ['zustand/subscribeWithSelector', never],
+        ['zustand/persist', Partial<State<TProvider, TWebSocketProvider>>],
+      ]
+    >(
       subscribeWithSelector(
-        persist<
-          State<TProvider, TWebSocketProvider>,
-          [['zustand/subscribeWithSelector', never]]
-        >(
-          () => ({
-            connectors:
-              typeof connectors === 'function' ? connectors() : connectors,
-            provider:
-              typeof provider === 'function' ? provider({ chainId }) : provider,
-            status,
-            webSocketProvider:
-              typeof webSocketProvider === 'function'
-                ? webSocketProvider({ chainId })
-                : webSocketProvider,
-          }),
+        persist(
+          () =>
+            <State<TProvider, TWebSocketProvider>>{
+              connectors:
+                typeof connectors === 'function' ? connectors() : connectors,
+              provider:
+                typeof provider === 'function'
+                  ? provider({ chainId })
+                  : provider,
+              status,
+              webSocketProvider:
+                typeof webSocketProvider === 'function'
+                  ? webSocketProvider({ chainId })
+                  : webSocketProvider,
+            },
           {
             name: storeKey,
             getStorage: () => storage,
@@ -134,6 +140,9 @@ export class Client<
     this.storage = storage
     this.#lastUsedConnector = storage?.getItem('wallet')
     this.#addEffects()
+
+    if (autoConnect && typeof window !== 'undefined')
+      setTimeout(async () => await this.autoConnect(), 0)
   }
 
   get chains() {
@@ -200,7 +209,10 @@ export class Client<
     if (this.#isAutoConnecting) return
     this.#isAutoConnecting = true
 
-    if (!this.connectors.length) return
+    this.setState((x) => ({
+      ...x,
+      status: x.data?.account ? 'reconnecting' : 'connecting',
+    }))
 
     // Try last used connector first
     const sorted = this.#lastUsedConnector

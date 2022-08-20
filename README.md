@@ -1,29 +1,27 @@
-<p>
+<p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/tmm/wagmi/main/.github/logo-dark.svg">
-    <img alt="wagmi logo" src="https://raw.githubusercontent.com/tmm/wagmi/main/.github/logo-light.svg" width="auto" height="60">
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wagmi-dev/.github/main/content/logo-dark.svg">
+    <img alt="wagmi logo" src="https://raw.githubusercontent.com/wagmi-dev/.github/main/content/logo-light.svg" width="auto" height="60">
   </picture>
 </p>
 
-React Hooks for Ethereum
-
+<p align="center">
+  React Hooks for Ethereum
 <p>
+
+<div align="center">
   <a href="https://www.npmjs.com/package/wagmi">
     <img src="https://img.shields.io/npm/v/wagmi?colorA=21262d&colorB=161b22&style=flat" alt="Version">
-  </a>
-  <a href="/LICENSE">
-    <img src="https://img.shields.io/npm/l/wagmi?colorA=21262d&colorB=161b22&style=flat" alt="License">
   </a>
   <a href="https://www.npmjs.com/package/wagmi">
     <img src="https://img.shields.io/npm/dm/wagmi?colorA=21262d&colorB=161b22&style=flat" alt="Downloads per month">
   </a>
   <a href="https://bestofjs.org/projects/wagmi">
-    <img src="https://img.shields.io/endpoint?colorA=21262d&colorB=161b22&style=flat&url=https://bestofjs-serverless.now.sh/api/project-badge?fullName=tmm%2Fwagmi%26since=daily" alt="Best of JS">
+    <img src="https://img.shields.io/endpoint?colorA=21262d&colorB=161b22&style=flat&url=https://bestofjs-serverless.now.sh/api/project-badge?fullName=wagmi-dev%2Fwagmi%26since=daily" alt="Best of JS">
   </a>
-  <a href="https://github.com/sponsors/tmm?metadata_campaign=gh_readme_badge">
-    <img src="https://img.shields.io/github/sponsors/tmm?colorA=21262d&colorB=161b22&style=flat" alt="Sponsors">
-  </a>
-</p>
+</div>
+
+<br>
 
 ## Features
 
@@ -98,22 +96,35 @@ Next, we use the `useConnect` hook to connect an injected wallet (e.g. MetaMask)
 
 We've only scratched the surface for what you can do with wagmi!
 
+—
+
+Check out [ConnectKit](https://docs.family.co/connectkit?utm_source=wagmi-dev) to get started with pre-built interface on top of wagmi for managing wallet connections.
+
 ## Community
 
 Check out the following places for more wagmi-related content:
 
-- Join the [discussions on GitHub](https://github.com/tmm/wagmi/discussions)
-- Follow [@awkweb](https://twitter.com/awkweb) and [@wagmi_sh](https://twitter.com/wagmi_sh) on Twitter for project updates
-- Share [your project/organization](https://github.com/tmm/wagmi/discussions/201) using wagmi
-- Browse the [awesome-wagmi](https://github.com/tmm/awesome-wagmi) list of awesome projects and resources
+- Join the [discussions on GitHub](https://github.com/wagmi-dev/wagmi/discussions)
+- Follow [@wagmi_sh](https://twitter.com/wagmi_sh) on Twitter for project updates
+- Share [your project/organization](https://github.com/wagmi-dev/wagmi/discussions/201) using wagmi
+- Browse the [awesome-wagmi](https://github.com/wagmi-dev/awesome-wagmi) list of awesome projects and resources
 
 ## Support
 
 If you find wagmi useful, please consider supporting development. Thank you 🙏
 
-- [GitHub Sponsors](https://github.com/sponsors/tmm?metadata_campaign=gh_readme_support)
+- [GitHub Sponsors](https://github.com/sponsors/wagmi-dev?metadata_campaign=gh_readme_support)
 - [Gitcoin Grant](https://gitcoin.co/grants/4493/wagmi-react-hooks-library-for-ethereum)
-- [awkweb.eth](https://etherscan.io/enslookup-search?search=awkweb.eth)
+- [wagmi-dev.eth](https://etherscan.io/enslookup-search?search=wagmi-dev.eth)
+
+## Sponsors
+
+<a href="https://twitter.com/family">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/wagmi-dev/.github/main/content/sponsors/family-dark.svg">
+    <img alt="wagmi logo" src="https://raw.githubusercontent.com/wagmi-dev/.github/main/content/sponsors/family-light.svg" width="auto" height="35">
+  </picture>
+</a>
 
 ## Contributing
 
@@ -129,3 +140,10 @@ Thanks to julianhutton.eth ([@julianjhutton](https://twitter.com/julianjhutton))
 ## License
 
 [WAGMIT](/LICENSE) License
+
+<br />
+
+<a href="https://vercel.com/?utm_source=wagmi-dev&utm_campaign=oss">
+  <img src="https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg" alt="Powered by Vercel" height="35">
+</a>
+

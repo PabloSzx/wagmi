@@ -1,10 +1,10 @@
-import * as React from 'react'
+import { useMutation } from '@tanstack/react-query'
 import {
   SwitchNetworkArgs,
   SwitchNetworkResult,
   switchNetwork,
 } from '@wagmi/core'
-import { useMutation } from '@tanstack/react-query'
+import * as React from 'react'
 
 import { useClient } from '../../context'
 import { MutationConfig } from '../../types'

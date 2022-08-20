@@ -1,12 +1,8 @@
-export {
-  Context,
-  /** @deprecated use `WagmiConfig` instead */
-  WagmiConfig as WagmiProvider,
-  WagmiConfig,
-  createClient,
-  useClient,
-} from './context'
-export type { CreateClientConfig, WagmiConfigProps } from './context'
+export { createClient } from './client'
+export type { CreateClientConfig } from './client'
+
+export { Context, WagmiConfig, useClient } from './context'
+export type { WagmiConfigProps } from './context'
 
 export {
   paginatedIndexesConfig,
@@ -20,6 +16,8 @@ export {
   useContractRead,
   useContractReads,
   useContractWrite,
+  useDeprecatedContractWrite,
+  useDeprecatedSendTransaction,
   useDisconnect,
   useEnsAddress,
   useEnsAvatar,
@@ -31,11 +29,14 @@ export {
   useProvider,
   useQuery,
   useSendTransaction,
+  usePrepareContractWrite,
+  usePrepareSendTransaction,
   useSignMessage,
   useSignTypedData,
   useSigner,
   useSwitchNetwork,
   useToken,
+  useTransaction,
   useWaitForTransaction,
   useWebSocketProvider,
 } from './hooks'

@@ -1,9 +1,9 @@
-import { providers } from 'ethers'
 import type {
   CoinbaseWalletProvider,
   CoinbaseWalletSDK,
 } from '@coinbase/wallet-sdk'
 import type { CoinbaseWalletSDKOptions } from '@coinbase/wallet-sdk/dist/CoinbaseWalletSDK'
+import { providers } from 'ethers'
 import { getAddress, hexValue } from 'ethers/lib/utils'
 
 import {
@@ -32,7 +32,8 @@ type Options = CoinbaseWalletSDKOptions & {
 
 export class CoinbaseWalletConnector extends Connector<
   CoinbaseWalletProvider,
-  Options
+  Options,
+  providers.JsonRpcSigner
 > {
   readonly id = 'coinbaseWallet'
   readonly name = 'Coinbase Wallet'
@@ -126,7 +127,11 @@ export class CoinbaseWalletConnector extends Connector<
       let CoinbaseWalletSDK = (await import('@coinbase/wallet-sdk')).default
       // Workaround for Vite dev import errors
       // https://github.com/vitejs/vite/issues/7112
-      if (!CoinbaseWalletSDK.constructor)
+      if (
+        typeof CoinbaseWalletSDK !== 'function' &&
+        // @ts-expect-error This import error is not visible to TypeScript
+        typeof CoinbaseWalletSDK.default === 'function'
+      )
         CoinbaseWalletSDK = (<{ default: typeof CoinbaseWalletSDK }>(
           (<unknown>CoinbaseWalletSDK)
         )).default

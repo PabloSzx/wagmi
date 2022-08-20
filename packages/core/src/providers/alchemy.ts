@@ -1,16 +1,14 @@
 import { providers } from 'ethers'
 
-import { defaultAlchemyId } from '../constants'
+import { defaultAlchemyApiKey } from '../constants'
 import { ChainProviderFn, FallbackProviderConfig } from '../types'
 
 export type AlchemyProviderConfig = FallbackProviderConfig & {
-  alchemyId?: string
-  pollingInterval?: number
+  apiKey?: string
 }
 
 export function alchemyProvider({
-  alchemyId = defaultAlchemyId,
-  pollingInterval,
+  apiKey = defaultAlchemyApiKey,
   priority,
   stallTimeout,
   weight,
@@ -25,16 +23,15 @@ export function alchemyProvider({
         ...chain,
         rpcUrls: {
           ...chain.rpcUrls,
-          default: `${chain.rpcUrls.alchemy}/${alchemyId}`,
+          default: `${chain.rpcUrls.alchemy}/${apiKey}`,
         },
       },
       provider: () => {
-        const provider = new providers.AlchemyProvider(chain.id, alchemyId)
-        if (pollingInterval) provider.pollingInterval = pollingInterval
+        const provider = new providers.AlchemyProvider(chain.id, apiKey)
         return Object.assign(provider, { priority, stallTimeout, weight })
       },
       webSocketProvider: () =>
-        new providers.AlchemyWebSocketProvider(chain.id, alchemyId),
+        new providers.AlchemyWebSocketProvider(chain.id, apiKey),
     }
   }
 }

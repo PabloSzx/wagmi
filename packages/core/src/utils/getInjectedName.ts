@@ -1,4 +1,6 @@
-export function getInjectedName(ethereum?: Window['ethereum']) {
+import { Ethereum } from '../types'
+
+export function getInjectedName(ethereum?: Ethereum) {
   if (!ethereum) return 'Injected'
 
   const getName = (provider: Ethereum) => {
@@ -11,6 +13,8 @@ export function getInjectedName(ethereum?: Window['ethereum']) {
     if (provider.isTokenPocket) return 'TokenPocket'
     if (provider.isTokenary) return 'Tokenary'
     if (provider.isTrust) return 'Trust Wallet'
+    if (provider.isOneInchIOSWallet || provider.isOneInchAndroidWallet)
+      return '1inch Wallet'
     if (provider.isMetaMask) return 'MetaMask'
   }
 

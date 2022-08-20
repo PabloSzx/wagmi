@@ -7,26 +7,23 @@ import {
   createClient,
   defaultChains,
 } from 'wagmi'
-import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
 import { InjectedConnector } from 'wagmi/connectors/injected'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
-
-import { Buffer } from 'buffer'
+import { alchemyProvider } from 'wagmi/providers/alchemy'
 
 import { App } from './App'
 import reportWebVitals from './reportWebVitals'
+import { Buffer } from 'buffer'
 
 // polyfill Buffer for client
 if (!window.Buffer) {
   window.Buffer = Buffer
 }
 
-const alchemyId = process.env.REACT_APP_ALCHEMY_ID
-
 const { chains, provider, webSocketProvider } = configureChains(defaultChains, [
-  alchemyProvider({ alchemyId }),
+  alchemyProvider({ apiKey: process.env.REACT_APP_ALCHEMY_API_KEY }),
 ])
 
 const client = createClient({

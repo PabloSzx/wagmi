@@ -8,12 +8,15 @@ export const chainId = {
   rinkeby: 4,
   goerli: 5,
   kovan: 42,
+  sepolia: 11_155_111,
   optimism: 10,
   optimismKovan: 69,
+  optimismGoerli: 420,
   polygon: 137,
   polygonMumbai: 80_001,
   arbitrum: 42_161,
   arbitrumRinkeby: 421_611,
+  arbitrumGoerli: 421_613,
   localhost: 1_337,
   hardhat: 31_337,
   foundry: 31_337,
@@ -48,7 +51,7 @@ export const ropsten: Chain = {
   id: chainId.ropsten,
   name: 'Ropsten',
   network: 'ropsten',
-  nativeCurrency: { name: 'Ropsten Ether', symbol: 'ROP', decimals: 18 },
+  nativeCurrency: { name: 'Ropsten Ether', symbol: 'ETH', decimals: 18 },
   rpcUrls: {
     alchemy: alchemyRpcUrls.ropsten,
     default: publicRpcUrls.ropsten,
@@ -73,7 +76,7 @@ export const rinkeby: Chain = {
   id: chainId.rinkeby,
   name: 'Rinkeby',
   network: 'rinkeby',
-  nativeCurrency: { name: 'Rinkeby Ether', symbol: 'RIN', decimals: 18 },
+  nativeCurrency: { name: 'Rinkeby Ether', symbol: 'ETH', decimals: 18 },
   rpcUrls: {
     alchemy: alchemyRpcUrls.rinkeby,
     default: publicRpcUrls.rinkeby,
@@ -98,7 +101,7 @@ export const goerli: Chain = {
   id: chainId.goerli,
   name: 'Goerli',
   network: 'goerli',
-  nativeCurrency: { name: 'Goerli Ether', symbol: 'GOR', decimals: 18 },
+  nativeCurrency: { name: 'Goerli Ether', symbol: 'ETH', decimals: 18 },
   rpcUrls: {
     alchemy: alchemyRpcUrls.goerli,
     default: publicRpcUrls.goerli,
@@ -123,7 +126,7 @@ export const kovan: Chain = {
   id: chainId.kovan,
   name: 'Kovan',
   network: 'kovan',
-  nativeCurrency: { name: 'Kovan Ether', symbol: 'KOV', decimals: 18 },
+  nativeCurrency: { name: 'Kovan Ether', symbol: 'ETH', decimals: 18 },
   rpcUrls: {
     alchemy: alchemyRpcUrls.kovan,
     default: publicRpcUrls.kovan,
@@ -137,6 +140,26 @@ export const kovan: Chain = {
   multicall: {
     address: '0xca11bde05977b3631167028862be2a173976ca11',
     blockCreated: 30285908,
+  },
+  testnet: true,
+}
+
+export const sepolia: Chain = {
+  id: chainId.sepolia,
+  name: 'Sepolia',
+  network: 'sepolia',
+  nativeCurrency: { name: 'Sepolia Ether', symbol: 'ETH', decimals: 18 },
+  rpcUrls: {
+    default: publicRpcUrls.sepolia,
+    public: publicRpcUrls.sepolia,
+  },
+  blockExplorers: {
+    etherscan: etherscanBlockExplorers.sepolia,
+    default: etherscanBlockExplorers.sepolia,
+  },
+  multicall: {
+    address: '0xca11bde05977b3631167028862be2a173976ca11',
+    blockCreated: 751532,
   },
   testnet: true,
 }
@@ -168,7 +191,7 @@ export const optimismKovan: Chain = {
   network: 'optimism-kovan',
   nativeCurrency: {
     name: 'Kovan Ether',
-    symbol: 'KOR',
+    symbol: 'ETH',
     decimals: 18,
   },
   rpcUrls: {
@@ -184,6 +207,34 @@ export const optimismKovan: Chain = {
   multicall: {
     address: '0xca11bde05977b3631167028862be2a173976ca11',
     blockCreated: 1418387,
+  },
+  testnet: true,
+}
+
+export const optimismGoerli: Chain = {
+  id: chainId.optimismGoerli,
+  name: 'Optimism Goerli',
+  network: 'optimism-goerli',
+  nativeCurrency: {
+    name: 'Goerli Ether',
+    symbol: 'ETH',
+    decimals: 18,
+  },
+  rpcUrls: {
+    alchemy: alchemyRpcUrls.optimismGoerli,
+    default: publicRpcUrls.optimismGoerli,
+    infura: infuraRpcUrls.optimismGoerli,
+    public: publicRpcUrls.optimismGoerli,
+  },
+  blockExplorers: {
+    default: {
+      name: 'Blockscout',
+      url: 'https://blockscout.com/optimism/goerli',
+    },
+  },
+  multicall: {
+    address: '0xca11bde05977b3631167028862be2a173976ca11',
+    blockCreated: 49461,
   },
   testnet: true,
 }
@@ -266,7 +317,7 @@ export const arbitrumRinkeby: Chain = {
   network: 'arbitrum-rinkeby',
   nativeCurrency: {
     name: 'Arbitrum Rinkeby Ether',
-    symbol: 'ARETH',
+    symbol: 'ETH',
     decimals: 18,
   },
   rpcUrls: {
@@ -286,6 +337,34 @@ export const arbitrumRinkeby: Chain = {
   multicall: {
     address: '0xca11bde05977b3631167028862be2a173976ca11',
     blockCreated: 10228837,
+  },
+  testnet: true,
+}
+
+export const arbitrumGoerli: Chain = {
+  id: chainId.arbitrumGoerli,
+  name: 'Arbitrum Goerli',
+  network: 'arbitrum-goerli',
+  nativeCurrency: {
+    name: 'Arbitrum Goerli Ether',
+    symbol: 'ETH',
+    decimals: 18,
+  },
+  rpcUrls: {
+    alchemy: alchemyRpcUrls.arbitrumGoerli,
+    default: publicRpcUrls.arbitrumGoerli,
+    infura: infuraRpcUrls.arbitrumGoerli,
+    public: publicRpcUrls.arbitrumGoerli,
+  },
+  blockExplorers: {
+    default: {
+      name: 'Arbitrum Explorer',
+      url: 'https://goerli-rollup-explorer.arbitrum.io',
+    },
+  },
+  multicall: {
+    address: '0xca11bde05977b3631167028862be2a173976ca11',
+    blockCreated: 88114,
   },
   testnet: true,
 }
@@ -327,29 +406,47 @@ export const chain = {
   rinkeby,
   goerli,
   kovan,
+  sepolia,
   optimism,
+  optimismGoerli,
   optimismKovan,
   polygon,
   polygonMumbai,
   arbitrum,
+  arbitrumGoerli,
   arbitrumRinkeby,
   localhost,
   hardhat,
   foundry,
 } as const
-export const allChains = Object.values(chain)
 
-export const defaultChains: Chain[] = [
-  chain.mainnet,
-  chain.ropsten,
-  chain.rinkeby,
-  chain.goerli,
-  chain.kovan,
+export const allChains = [
+  mainnet,
+  ropsten,
+  rinkeby,
+  goerli,
+  kovan,
+  sepolia,
+  optimism,
+  optimismKovan,
+  optimismGoerli,
+  polygon,
+  polygonMumbai,
+  arbitrum,
+  arbitrumGoerli,
+  arbitrumRinkeby,
+  localhost,
+  hardhat,
+  foundry,
 ]
 
+export const defaultChains: Chain[] = [mainnet, ropsten, rinkeby, goerli, kovan]
+
 export const defaultL2Chains: Chain[] = [
-  chain.arbitrum,
-  chain.arbitrumRinkeby,
-  chain.optimism,
-  chain.optimismKovan,
+  arbitrum,
+  arbitrumRinkeby,
+  arbitrumGoerli,
+  optimism,
+  optimismKovan,
+  optimismGoerli,
 ]

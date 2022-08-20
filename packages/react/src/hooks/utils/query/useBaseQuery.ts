@@ -1,4 +1,3 @@
-import * as React from 'react'
 import {
   QueryKey,
   QueryObserver,
@@ -8,6 +7,7 @@ import {
   useQueryClient,
   useQueryErrorResetBoundary,
 } from '@tanstack/react-query'
+import * as React from 'react'
 
 import { useSyncExternalStore } from '../useSyncExternalStore'
 import { shouldThrowError } from './utils'

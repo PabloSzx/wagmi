@@ -18,6 +18,8 @@ export {
   useContractRead,
   useContractReads,
   useContractWrite,
+  useDeprecatedContractWrite,
+  usePrepareContractWrite,
   useToken,
 } from './contracts'
 
@@ -27,6 +29,12 @@ export { useBlockNumber, useFeeData } from './network-status'
 
 export { useProvider, useWebSocketProvider } from './providers'
 
-export { useSendTransaction, useWaitForTransaction } from './transactions'
+export {
+  useDeprecatedSendTransaction,
+  useSendTransaction,
+  usePrepareSendTransaction,
+  useTransaction,
+  useWaitForTransaction,
+} from './transactions'
 
 export { useChainId, useBaseQuery, useQuery, useInfiniteQuery } from './utils'

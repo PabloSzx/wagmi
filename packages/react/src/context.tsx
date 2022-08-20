@@ -1,3 +1,5 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Provider, WebSocketProvider } from '@wagmi/core'
 import * as React from 'react'
 import {
   ClientConfig,
@@ -84,15 +86,6 @@ export function WagmiConfig<
   children,
   client,
 }: React.PropsWithChildren<WagmiConfigProps<TProvider, TWebSocketProvider>>) {
-  // Attempt to connect on mount
-  React.useEffect(() => {
-    ;(async () => {
-      if (!client.config.autoConnect) return
-      await client.autoConnect()
-    })()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   return (
     <Context.Provider value={client as unknown as Client}>
       <QueryClientProvider client={client.queryClient}>

@@ -1,3 +1,5 @@
+import { expect, it } from 'vitest'
+
 import * as Exports from './chains'
 
 it('should expose correct exports', () => {
@@ -5,14 +7,17 @@ it('should expose correct exports', () => {
     [
       "arbitrum",
       "arbitrumRinkeby",
+      "arbitrumGoerli",
       "foundry",
       "goerli",
       "hardhat",
       "kovan",
+      "sepolia",
       "localhost",
       "mainnet",
       "optimism",
       "optimismKovan",
+      "optimismGoerli",
       "polygon",
       "polygonMumbai",
       "rinkeby",

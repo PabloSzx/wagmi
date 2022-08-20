@@ -1,3 +1,5 @@
+import { expect, it } from 'vitest'
+
 import * as Exports from './actions'
 
 it('should expose correct exports', () => {
@@ -14,11 +16,14 @@ it('should expose correct exports', () => {
       "fetchFeeData",
       "fetchSigner",
       "fetchToken",
+      "fetchTransaction",
       "getAccount",
       "getContract",
       "getNetwork",
       "getProvider",
       "getWebSocketProvider",
+      "prepareSendTransaction",
+      "prepareWriteContract",
       "readContract",
       "readContracts",
       "sendTransaction",

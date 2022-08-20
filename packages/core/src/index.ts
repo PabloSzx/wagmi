@@ -1,5 +1,7 @@
 export {
   connect,
+  deprecatedSendTransaction,
+  deprecatedWriteContract,
   disconnect,
   fetchBalance,
   fetchBlockNumber,
@@ -10,11 +12,14 @@ export {
   fetchFeeData,
   fetchSigner,
   fetchToken,
+  fetchTransaction,
   getAccount,
   getContract,
   getNetwork,
   getProvider,
   getWebSocketProvider,
+  prepareWriteContract,
+  prepareSendTransaction,
   readContract,
   readContracts,
   sendTransaction,
@@ -36,6 +41,10 @@ export {
 export type {
   ConnectArgs,
   ConnectResult,
+  DeprecatedSendTransactionArgs,
+  DeprecatedSendTransactionResult,
+  DeprecatedWriteContractConfig,
+  DeprecatedWriteContractResult,
   FetchBalanceArgs,
   FetchBalanceResult,
   FetchBlockNumberArgs,
@@ -53,6 +62,8 @@ export type {
   FetchSignerResult,
   FetchTokenArgs,
   FetchTokenResult,
+  FetchTransactionArgs,
+  FetchTransactionResult,
   GetAccountResult,
   GetContractArgs,
   GetNetworkResult,
@@ -60,12 +71,18 @@ export type {
   GetProviderResult,
   GetWebSocketProviderArgs,
   GetWebSocketProviderResult,
+  PrepareWriteContractConfig,
+  PrepareWriteContractResult,
+  PrepareSendTransactionArgs,
+  PrepareSendTransactionResult,
   ReadContractConfig,
   ReadContractResult,
   ReadContractsConfig,
   ReadContractsResult,
   SendTransactionArgs,
+  SendTransactionPreparedRequest,
   SendTransactionResult,
+  SendTransactionUnpreparedRequest,
   SignMessageArgs,
   SignMessageResult,
   SignTypedDataArgs,
@@ -83,15 +100,21 @@ export type {
   WatchProviderCallback,
   WatchSignerCallback,
   WatchWebSocketProviderCallback,
-  WriteContractConfig,
+  WriteContractArgs,
+  WriteContractPreparedArgs,
   WriteContractResult,
+  WriteContractUnpreparedArgs,
 } from './actions'
 
 export { createClient, Client } from './client'
 export type { ClientConfig } from './client'
 
 export { Connector, InjectedConnector } from './connectors'
-export type { ConnectorData, ConnectorEvents } from './connectors'
+export type {
+  ConnectorData,
+  ConnectorEvents,
+  InjectedConnectorOptions,
+} from './connectors'
 
 export {
   alchemyRpcUrls,
@@ -115,6 +138,7 @@ export {
   ChainNotConfiguredError,
   ConnectorAlreadyConnectedError,
   ConnectorNotFoundError,
+  ContractMethodDoesNotExistError,
   ContractMethodNoResultError,
   ProviderChainsNotFound,
   ProviderRpcError,
@@ -131,9 +155,11 @@ export type { ClientStorage as Storage } from './storage'
 export type {
   Chain,
   ChainProviderFn,
+  Ethereum,
   FallbackProviderConfig,
   ProviderWithFallbackConfig,
   Provider,
+  Signer,
   Unit,
   WebSocketProvider,
 } from './types'

@@ -2,10 +2,14 @@
   "name": "@wagmi/core",
   "description": "Vanilla JS library for Ethereum",
   "license": "WAGMIT",
-  "version": "0.4.7",
-  "repository": "tmm/wagmi",
+  "version": "0.5.4",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wagmi-dev/wagmi.git",
+    "directory": "packages/core"
+  },
   "author": "awkweb.eth",
-  "ethereum": "awkweb.eth",
+  "ethereum": "wagmi-dev.eth",
   "funding": [
     {
       "type": "gitcoin",
@@ -13,10 +17,9 @@
     },
     {
       "type": "github",
-      "url": "https://github.com/sponsors/tmm"
+      "url": "https://github.com/sponsors/wagmi-dev"
     }
   ],
-  "sideEffects": false,
   "main": "dist/wagmi-core.cjs.js",
   "module": "dist/wagmi-core.esm.js",
   "types": "dist/wagmi-core.cjs.d.ts",
@@ -63,6 +66,7 @@
       "default": "./providers/public/dist/wagmi-core-providers-public.cjs.js"
     }
   },
+  "sideEffects": false,
   "files": [
     "/chains",
     "/connectors",
@@ -98,10 +102,10 @@
   },
   "dependencies": {
     "eventemitter3": "^4.0.7",
-    "zustand": "^4.0.0-rc.1"
+    "zustand": "^4.0.0"
   },
   "devDependencies": {
-    "@coinbase/wallet-sdk": "^3.3.0",
+    "@coinbase/wallet-sdk": "^3.4.1",
     "@walletconnect/ethereum-provider": "^1.7.8",
     "ethers": "^5.6.5"
   },

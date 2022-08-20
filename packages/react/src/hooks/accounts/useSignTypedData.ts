@@ -1,10 +1,10 @@
-import * as React from 'react'
+import { useMutation } from '@tanstack/react-query'
 import {
   SignTypedDataArgs,
   SignTypedDataResult,
   signTypedData,
 } from '@wagmi/core'
-import { useMutation } from '@tanstack/react-query'
+import * as React from 'react'
 
 import { MutationConfig } from '../../types'
 

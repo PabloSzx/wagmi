@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { describe, expect, it, vi } from 'vitest'
 
 import { renderHook } from '../test'
 import { useClient } from './context'
@@ -63,6 +64,7 @@ describe('useClient', () => {
             "getState": [Function],
             "persist": {
               "clearStorage": [Function],
+              "getOptions": [Function],
               "hasHydrated": [Function],
               "onFinishHydration": [Function],
               "onHydrate": [Function],
@@ -78,7 +80,7 @@ describe('useClient', () => {
 
     it('throws when not inside Provider', () => {
       // eslint-disable-next-line @typescript-eslint/no-empty-function
-      jest.spyOn(console, 'error').mockImplementation(() => {})
+      vi.spyOn(console, 'error').mockImplementation(() => {})
 
       try {
         const wrapper = ({ children }: { children?: React.ReactNode }) =>
@@ -86,7 +88,11 @@ describe('useClient', () => {
         renderHook(() => useClient(), { wrapper })
       } catch (error) {
         expect(error).toMatchInlineSnapshot(
-          `[Error: Must be used within WagmiConfig]`,
+          `
+          [Error: \`useClient\` must be used within \`WagmiConfig\`.
+
+          Read more: https://wagmi.sh/docs/WagmiConfig]
+        `,
         )
       }
     })

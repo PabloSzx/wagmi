@@ -1,5 +1,318 @@
 # wagmi
 
+## 0.6.4
+
+### Patch Changes
+
+- [#852](https://github.com/wagmi-dev/wagmi/pull/852) [`c3192d0`](https://github.com/wagmi-dev/wagmi/commit/c3192d0663aa332ae9edfd9dd49b333454013ab7) Thanks [@skeithc](https://github.com/skeithc)! - Added support for the Sepolia testnet
+
+- Updated dependencies [[`c3192d0`](https://github.com/wagmi-dev/wagmi/commit/c3192d0663aa332ae9edfd9dd49b333454013ab7)]:
+  - @wagmi/core@0.5.4
+
+## 0.6.3
+
+### Patch Changes
+
+- [#835](https://github.com/wagmi-dev/wagmi/pull/835) [`1b85e54`](https://github.com/wagmi-dev/wagmi/commit/1b85e54ae654e2564cf5bc2dae6411fe0a25875c) Thanks [@jxom](https://github.com/jxom)! - Update `@coinbase/wallet-sdk` to `3.4.1`
+
+* [#843](https://github.com/wagmi-dev/wagmi/pull/843) [`e77dee6`](https://github.com/wagmi-dev/wagmi/commit/e77dee6a606b8aac4279569c54cec8902476fee9) Thanks [@tmm](https://github.com/tmm)! - Fix `MockConnector` entrypoint path
+
+- [#834](https://github.com/wagmi-dev/wagmi/pull/834) [`9655879`](https://github.com/wagmi-dev/wagmi/commit/96558793b0319df47aefafa6b7b9c959068d491b) Thanks [@jxom](https://github.com/jxom)! - Update zustand to `4.0.0`
+
+* [#833](https://github.com/wagmi-dev/wagmi/pull/833) [`3ae6d0f`](https://github.com/wagmi-dev/wagmi/commit/3ae6d0f5e2d65432024272b43afe68a8f63bb7ea) Thanks [@jxom](https://github.com/jxom)! - Updated `react-query@4.0.0-beta.23` to `@tanstack/react-query@^4.0.10`
+
+* Updated dependencies [[`1b85e54`](https://github.com/wagmi-dev/wagmi/commit/1b85e54ae654e2564cf5bc2dae6411fe0a25875c), [`9655879`](https://github.com/wagmi-dev/wagmi/commit/96558793b0319df47aefafa6b7b9c959068d491b)]:
+  - @wagmi/core@0.5.3
+
+## 0.6.2
+
+### Patch Changes
+
+- [#823](https://github.com/wagmi-dev/wagmi/pull/823) [`10b8b78`](https://github.com/wagmi-dev/wagmi/commit/10b8b78605b7246b2c55b8d69f96663906e5cd20) Thanks [@tmm](https://github.com/tmm)! - Add Optimism Goerli to `chain` lookup.
+
+- Updated dependencies [[`10b8b78`](https://github.com/wagmi-dev/wagmi/commit/10b8b78605b7246b2c55b8d69f96663906e5cd20)]:
+  - @wagmi/core@0.5.2
+
+## 0.6.1
+
+### Patch Changes
+
+- [#767](https://github.com/wagmi-dev/wagmi/pull/767) [`e9392f3`](https://github.com/wagmi-dev/wagmi/commit/e9392f396e48e928bd9d2522e3ad671c589f08cb) Thanks [@klyap](https://github.com/klyap)! - Add Optimism Goerli chain ahead of [Kovan deprecation](https://dev.optimism.io/kovan-to-goerli).
+
+* [#817](https://github.com/wagmi-dev/wagmi/pull/817) [`7e5cac7`](https://github.com/wagmi-dev/wagmi/commit/7e5cac75815dcd8aa563462342a4853fc5207735) Thanks [@alecananian](https://github.com/alecananian)! - Added custom name mapping for 1inch Wallet injected provider
+
+- [#806](https://github.com/wagmi-dev/wagmi/pull/806) [`0b34e56`](https://github.com/wagmi-dev/wagmi/commit/0b34e56db97e6dcdb71088e0149b2d55ebc604a5) Thanks [@vmichalik](https://github.com/vmichalik)! - Fix canonical testnet native asset symbols by changing them to ETH
+
+* [#778](https://github.com/wagmi-dev/wagmi/pull/778) [`0892908`](https://github.com/wagmi-dev/wagmi/commit/08929084eeeba1a3a55aa098fa9d92a243685ad5) Thanks [@0xcadams](https://github.com/0xcadams)! - Add Arbitrum Goerli chain.
+
+* Updated dependencies [[`e9392f3`](https://github.com/wagmi-dev/wagmi/commit/e9392f396e48e928bd9d2522e3ad671c589f08cb), [`7e5cac7`](https://github.com/wagmi-dev/wagmi/commit/7e5cac75815dcd8aa563462342a4853fc5207735), [`0b34e56`](https://github.com/wagmi-dev/wagmi/commit/0b34e56db97e6dcdb71088e0149b2d55ebc604a5), [`0892908`](https://github.com/wagmi-dev/wagmi/commit/08929084eeeba1a3a55aa098fa9d92a243685ad5)]:
+  - @wagmi/core@0.5.1
+
+## 0.6.0
+
+### Minor Changes
+
+- [#658](https://github.com/wagmi-dev/wagmi/pull/658) [`d70c115`](https://github.com/wagmi-dev/wagmi/commit/d70c115131f299fb61f87867b6ac4218e0bcf432) Thanks [@jxom](https://github.com/jxom)! - **Breaking:** The `useSendTransaction` hook's `data` now returns an object only consisting of `hash` & `wait`, and not the full [`TransactionResponse`](https://docs.ethers.io/v5/api/providers/types/#providers-TransactionResponse).
+
+  If you require the full `TransactionResponse`, you can use `useTransaction`:
+
+  ```diff
+  import { useSendTransaction, useTransaction } from 'wagmi'
+
+  const {
+    data: {
+      hash,
+      wait,
+  -   ...transaction
+    }
+  } = useSendTransaction(...)
+
+  +const { data: transaction } = useTransaction({ hash })
+  ```
+
+  > Why? The old implementation of `useSendTransaction` created a long-running async task, causing [UX pitfalls](https://wagmi.sh/docs/prepare-hooks/intro#ux-pitfalls-without-prepare-hooks) when invoked in a click handler.
+
+* [#658](https://github.com/wagmi-dev/wagmi/pull/658) [`d70c115`](https://github.com/wagmi-dev/wagmi/commit/d70c115131f299fb61f87867b6ac4218e0bcf432) Thanks [@jxom](https://github.com/jxom)! - **Breaking**: The configuration passed to the `useSendTransaction` hook now needs to be either:
+
+  - prepared with the `usePrepareSendTransaction` hook **(new)**, or
+  - recklessly unprepared **(previous functionality)**
+
+  > Why? [Read here](https://wagmi.sh/docs/prepare-hooks/intro)
+
+  ### Prepared usage
+
+  ```diff
+  import { usePrepareSendTransaction, useSendTransaction } from 'wagmi'
+
+  +const { config } = usePrepareSendTransaction({
+  +  request: {
+  +    to: 'moxey.eth',
+  +    value: parseEther('1'),
+  +  }
+  +})
+
+  const { data } = useSendTransaction({
+  - request: {
+  -   to: 'moxey.eth',
+  -   value: parseEther('1')
+  - }
+  + ...config
+  })
+  ```
+
+  ### Recklessly unprepared usage
+
+  If you are not ready to upgrade to `usePrepareSendTransaction`, it is possible to use `useSendTransaction` without preparing the configuration first by passing `mode: 'recklesslyUnprepared'`.
+
+  ```diff
+  import { useSendTransaction } from 'wagmi'
+
+  const { data } = useSendTransaction({
+  + mode: 'recklesslyUnprepared',
+    request: {
+      to: 'moxey.eth',
+      value: parseEther('1'),
+    }
+  })
+  ```
+
+- [#658](https://github.com/wagmi-dev/wagmi/pull/658) [`d70c115`](https://github.com/wagmi-dev/wagmi/commit/d70c115131f299fb61f87867b6ac4218e0bcf432) Thanks [@jxom](https://github.com/jxom)! - **Breaking**: If a `chainId` is passed to `useContractWrite` or `useSendTransaction`, it will no longer attempt to switch chain before sending the transaction. Instead, it will throw an error if the user is on the wrong chain.
+
+  > Why? Eagerly prompting to switch chain in these actions created a long-running async task that that makes [iOS App Links](https://wagmi.sh/docs/prepare-hooks/intro#ios-app-link-constraints) vulnerable.
+
+* [#760](https://github.com/wagmi-dev/wagmi/pull/760) [`d8af6bf`](https://github.com/wagmi-dev/wagmi/commit/d8af6bf50885aec110ae4d64716642453aa27896) Thanks [@tmm](https://github.com/tmm)! - **Breaking:** `alchemyProvider` and `infuraProvider` now use a generic `apiKey` configuration option instead of `alchemyId` and `infuraId`.
+
+  ```diff
+  import { alchemyProvider } from '@wagmi/core/providers/alchemy'
+  import { infuraProvider } from '@wagmi/core/providers/infura'
+
+  alchemyProvider({
+  -  alchemyId: 'yourAlchemyApiKey',
+  +  apiKey: 'yourAlchemyApiKey',
+  })
+
+  infuraProvider({
+  -  infuraId: 'yourInfuraApiKey',
+  +  apiKey: 'yourInfuraApiKey',
+  })
+  ```
+
+- [#658](https://github.com/wagmi-dev/wagmi/pull/658) [`d70c115`](https://github.com/wagmi-dev/wagmi/commit/d70c115131f299fb61f87867b6ac4218e0bcf432) Thanks [@jxom](https://github.com/jxom)! - Added the `usePrepareContractWrite` hook that eagerly fetches the parameters required for sending a contract write transaction such as the gas estimate.
+
+  It returns config to be passed through to `useContractWrite`.
+
+  ```ts
+  const { config } = usePrepareContractWrite({
+    addressOrName: '0xecb504d39723b0be0e3a9aa33d646642d1051ee1',
+    contractInterface: wagmigotchiABI,
+    functionName: 'feed',
+  })
+  const { write } = useContractWrite(config)
+  ```
+
+* [#658](https://github.com/wagmi-dev/wagmi/pull/658) [`d70c115`](https://github.com/wagmi-dev/wagmi/commit/d70c115131f299fb61f87867b6ac4218e0bcf432) Thanks [@jxom](https://github.com/jxom)! - **Breaking:** When `useSendTransaction` is in "prepare mode" (used with `usePrepareSendTransaction`), `sendTransaction`/`sendTransactionAsync` will be `undefined` until the configuration has been prepared. Ensure that your usage reflects this.
+
+  ```tsx
+  const { config } = usePrepareSendTransaction({ ... })
+  const { sendTransaction } = useSendTransaction(config)
+
+  <button
+    disabled={!sendTransaction}
+    onClick={() => sendTransaction?.()}
+  >
+    Send
+  </button>
+  ```
+
+- [#658](https://github.com/wagmi-dev/wagmi/pull/658) [`d70c115`](https://github.com/wagmi-dev/wagmi/commit/d70c115131f299fb61f87867b6ac4218e0bcf432) Thanks [@jxom](https://github.com/jxom)! - Added the `usePrepareSendTransaction` hook that eagerly fetches the parameters required for sending a transaction such as the gas estimate and resolving an ENS address (if required).
+
+  It returns config to be passed through to `useSendTransaction`.
+
+  ```ts
+  import { usePrepareSendTransaction, useSendTransaction } from '@wagmi/core'
+
+  const { config } = usePrepareSendTransaction({
+    request: {
+      to: 'moxey.eth',
+      value: parseEther('1'),
+    },
+  })
+  const { sendTransaction } = useSendTransaction(config)
+  ```
+
+* [#658](https://github.com/wagmi-dev/wagmi/pull/658) [`d70c115`](https://github.com/wagmi-dev/wagmi/commit/d70c115131f299fb61f87867b6ac4218e0bcf432) Thanks [@jxom](https://github.com/jxom)! - **Breaking:** The `sendTransaction`/`sendTransactionAsync` configuration object has now been altered to only accept "reckless" configuration. If one or more of these values are set, it can lead to [UX pitfalls](https://wagmi.sh/docs/prepare-hooks/intro#ux-pitfalls-without-prepare-hooks).
+
+  ```diff
+  <button
+    onClick={() => {
+      sendTransaction({
+  -     request: {
+  +     recklesslySetUnpreparedRequest:
+          to: 'moxey.eth',
+          value: parseEther('1')
+        }
+      })
+    }}
+  >
+    Send
+  </button>
+  ```
+
+- [#727](https://github.com/wagmi-dev/wagmi/pull/727) [`ac3b9b8`](https://github.com/wagmi-dev/wagmi/commit/ac3b9b87f80cb45b65d003f09d916d7d1427a62e) Thanks [@tmm](https://github.com/tmm)! - **Breaking**: Moved the `pollingInterval` config option from the chain provider config to `configureChains` config.
+
+  ```diff
+  const { chains, provider } = configureChains(
+    [chain.mainnet, chain.polygon],
+    [
+  -   alchemyProvider({ apiKey, pollingInterval: 5000 }),
+  -   publicProvider({ pollingInterval: 5000 })
+  +   alchemyProvider({ apiKey }),
+  +   publicProvider()
+    ],
+  + { pollingInterval: 5000 }
+  )
+  ```
+
+* [#658](https://github.com/wagmi-dev/wagmi/pull/658) [`d70c115`](https://github.com/wagmi-dev/wagmi/commit/d70c115131f299fb61f87867b6ac4218e0bcf432) Thanks [@jxom](https://github.com/jxom)! - **Breaking:** When `useContractWrite` is in "prepare mode" (used with `usePrepareContractWrite`), `write`/`writeAsync` will be `undefined` until the configuration has been prepared. Ensure that your usage reflects this.
+
+  ```tsx
+  const { config } = usePrepareContractWrite({ ... })
+  const { write } = useContractWrite(config)
+
+  <button
+    disabled={!write}
+    onClick={() => write?.()}
+  >
+    Send
+  </button>
+  ```
+
+- [#658](https://github.com/wagmi-dev/wagmi/pull/658) [`d70c115`](https://github.com/wagmi-dev/wagmi/commit/d70c115131f299fb61f87867b6ac4218e0bcf432) Thanks [@jxom](https://github.com/jxom)! - **Breaking**: The configuration passed to the `useContractWrite` hook now needs to be either:
+
+  - prepared with the `usePrepareContractWrite` hook **(new)**, or
+  - recklessly unprepared **(previous functionality)**
+
+  > Why? [Read here](https://wagmi.sh/docs/prepare-hooks/intro)
+
+  ### Prepared usage
+
+  ```diff
+  import { usePrepareContractWrite, useContractWrite } from 'wagmi'
+
+  +const { config } = usePrepareContractWrite({
+  + addressOrName: '0x...',
+  + contractInterface: wagmiAbi,
+  + functionName: 'mint',
+  + args: [tokenId]
+  +})
+
+  const { data } = useContractWrite({
+  - addressOrName: '0x...',
+  - contractInterface: wagmiAbi,
+  - functionName: 'mint',
+  - args: [tokenId],
+  + ...config
+  })
+  ```
+
+  ### Recklessly unprepared usage
+
+  If you are not ready to upgrade to `usePrepareContractWrite`, it is possible to use `useContractWrite` without preparing the configuration first by passing `mode: 'recklesslyUnprepared'`.
+
+  ```diff
+  import { useContractWrite } from 'wagmi'
+
+  const { data } = useContractWrite({
+  + mode: 'recklesslyUnprepared',
+    addressOrName: '0x...',
+    contractInterface: wagmiAbi,
+    functionName: 'mint',
+    args: [tokenId],
+  })
+  ```
+
+### Patch Changes
+
+- [#733](https://github.com/wagmi-dev/wagmi/pull/733) [`6232487`](https://github.com/wagmi-dev/wagmi/commit/623248703bc728d539e28bf8a89b8ab22f0a5703) Thanks [@tmm](https://github.com/tmm)! - Add mock connector entrypoint
+
+* [#762](https://github.com/wagmi-dev/wagmi/pull/762) [`ccaeed5`](https://github.com/wagmi-dev/wagmi/commit/ccaeed53d731f51879e0cdd5648797a32f7d7a31) Thanks [@jxom](https://github.com/jxom)! - Fix `useContractRead` return value unexpectedly returning null for falsy values
+
+- [#734](https://github.com/wagmi-dev/wagmi/pull/734) [`7c2fa04`](https://github.com/wagmi-dev/wagmi/commit/7c2fa04e9b695840d6fa088e1f8d069f3c916551) Thanks [@jxom](https://github.com/jxom)! - Fix issue where `useProvider` & `useWebSocketProvider` would not update when `chainId` config changes
+
+* [#739](https://github.com/wagmi-dev/wagmi/pull/739) [`c2295a5`](https://github.com/wagmi-dev/wagmi/commit/c2295a56cc86d02cc6602e2b4557b8ab9a091a3f) Thanks [@tmm](https://github.com/tmm)! - Fix balance formatting for tokens that do not have 18 decimals.
+
+- [#759](https://github.com/wagmi-dev/wagmi/pull/759) [`959953d`](https://github.com/wagmi-dev/wagmi/commit/959953d1f5b3e8189bac56de245c62333470d18e) Thanks [@tmm](https://github.com/tmm)! - Added `useTransaction` hook:
+
+  ```ts
+  import { useTransaction } from 'wagmi'
+
+  const result = useTransaction({
+    hash: '0x5c504ed432cb51138bcf09aa5e8a410dd4a1e204ef84bfed1be16dfba1b22060',
+  })
+  ```
+
+- Updated dependencies [[`d70c115`](https://github.com/wagmi-dev/wagmi/commit/d70c115131f299fb61f87867b6ac4218e0bcf432), [`d70c115`](https://github.com/wagmi-dev/wagmi/commit/d70c115131f299fb61f87867b6ac4218e0bcf432), [`d70c115`](https://github.com/wagmi-dev/wagmi/commit/d70c115131f299fb61f87867b6ac4218e0bcf432), [`d8af6bf`](https://github.com/wagmi-dev/wagmi/commit/d8af6bf50885aec110ae4d64716642453aa27896), [`d70c115`](https://github.com/wagmi-dev/wagmi/commit/d70c115131f299fb61f87867b6ac4218e0bcf432), [`c2295a5`](https://github.com/wagmi-dev/wagmi/commit/c2295a56cc86d02cc6602e2b4557b8ab9a091a3f), [`ac3b9b8`](https://github.com/wagmi-dev/wagmi/commit/ac3b9b87f80cb45b65d003f09d916d7d1427a62e), [`d70c115`](https://github.com/wagmi-dev/wagmi/commit/d70c115131f299fb61f87867b6ac4218e0bcf432), [`d70c115`](https://github.com/wagmi-dev/wagmi/commit/d70c115131f299fb61f87867b6ac4218e0bcf432), [`959953d`](https://github.com/wagmi-dev/wagmi/commit/959953d1f5b3e8189bac56de245c62333470d18e)]:
+  - @wagmi/core@0.5.0
+
+## 0.5.11
+
+### Patch Changes
+
+- [`4c7d123`](https://github.com/wagmi-dev/wagmi/commit/4c7d123c8e74f93e770096857eb8c40ce0a47681) Thanks [@jxom](https://github.com/jxom)! - Fix issue where `useProvider` & `useWebSocketProvider` would not update when `chainId` config changes
+
+## 0.5.10
+
+### Patch Changes
+
+- [#713](https://github.com/tmm/wagmi/pull/713) [`08b0113`](https://github.com/tmm/wagmi/commit/08b0113bef9f32dceab2ecd823b1ee00f9bdc45d) Thanks [@jxom](https://github.com/jxom)! - Fix an issue where the `useContractRead` query function could return `undefined` instead of a serializable `null`.
+
+* [#725](https://github.com/tmm/wagmi/pull/725) [`b976920`](https://github.com/tmm/wagmi/commit/b97692051d778d7e112872663832c97963a8029a) Thanks [@tmm](https://github.com/tmm)! - Lock `react-query` version
+
+- [#721](https://github.com/tmm/wagmi/pull/721) [`abea25f`](https://github.com/tmm/wagmi/commit/abea25fd15d81d1ecaec9d3fbd687042ab29b1e6) Thanks [@tmm](https://github.com/tmm)! - Add `name` to `useToken` `data` value.
+
+- Updated dependencies [[`abea25f`](https://github.com/tmm/wagmi/commit/abea25fd15d81d1ecaec9d3fbd687042ab29b1e6), [`abea25f`](https://github.com/tmm/wagmi/commit/abea25fd15d81d1ecaec9d3fbd687042ab29b1e6)]:
+  - @wagmi/core@0.4.9
+
 ## 0.5.9
 
 ### Patch Changes

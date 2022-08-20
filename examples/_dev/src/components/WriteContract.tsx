@@ -6,6 +6,7 @@ import anvABI from './anv-abi.json'
 export const WriteContract = () => {
   const { write, data, error, isLoading, isError, isSuccess } =
     useContractWrite({
+      mode: 'recklesslyUnprepared',
       addressOrName: '0xe614fbd03d58a60fd9418d4ab5eb5ec6c001415f',
       contractInterface: anvABI,
       functionName: 'claim',
@@ -25,7 +26,9 @@ export const WriteContract = () => {
         />
         <button
           disabled={isLoading}
-          onClick={() => write({ args: parseInt(tokenId) })}
+          onClick={() =>
+            write?.({ recklesslySetUnpreparedArgs: parseInt(tokenId) })
+          }
         >
           Mint
         </button>
